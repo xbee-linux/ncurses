@@ -1,0 +1,40 @@
+schema-version: 1.0
+
+description: |
+  Le paquet Ncurses contient les bibliothèques de gestion des écrans type caractère, indépendant des terminaux.
+
+  Programmes installés: captoinfo (lien vers tic), clear, infocmp, infotocap (lien vers tic), ncursesw6-config, reset (lien vers tset), tabs, tic, toe, tput et tset
+  Bibliothèques installées: libcursesw.so (lien symbolique et script de l'éditeur de liens vers libncursesw.so), llibformw.so, libmenuw.so, libncursesw.so, libpanelw.so, ainsi que leurs équivalents non « non-wide » avec un nom identique, mais sans le « w ».
+  Répertoires installés: /usr/share/tabset, /usr/share/terminfo et /usr/share/doc/ncurses-6.2
+
+  captoinfo: Convertit une description termcap en description terminfo
+  clear: Efface l'écran si possible
+  infocmp: Compare ou affiche les descriptions terminfo
+  infotocap: Convertit une description terminfo en description termcap
+  ncursesw6-config: Fournit des informations de configuration de ncurses
+  reset: Réinitialise un terminal avec ses valeurs par défaut
+  tabs: Efface et initialise des taquets de tab sur un terminal
+  tic: Le compilateur d'entrée de description terminfo, traduisant un fichier terminfo au format source dans un format binaire nécessaire pour les routines des bibliothèques ncurses. Un fichier terminfo contient des informations sur les capacités d'un terminal particulier
+  toe: Liste tous les types de terminaux disponibles, donnant pour chacun d'entre eux son nom principal et sa description
+  tput: Rend les valeurs de capacités dépendant du terminal disponibles au shell ; il peut aussi être utilisé pour réinitialiser un terminal ou pour afficher son nom long
+  tset: Peut être utilisé pour initialiser des terminaux
+  libcursesw: Un lien vers libncursesw
+  libncursesw: Contient des fonctions pour afficher du texte de plusieurs façons compliquées sur un écran de terminal ; un bon exemple d'utilisation de ces fonctions est le menu affiché par le make menuconfig du noyau
+  libformw: Contient des fonctions pour implémenter des formes
+  libmenuw: Contient des fonctions pour implémenter des menus
+  libpanelw: Contient des fonctions pour implémenter des panneaux
+
+builder:
+  origin: ./ncurses-builder
+  var:
+    version: "{% version %}"
+
+
+var:
+  version: "6.2"
+
+
+provision:
+  - copy:
+      builder: ncurses
+      todir: /usr

@@ -1,0 +1,30 @@
+schema-version: 1.0
+
+type: builder
+
+
+const:
+  srcDir: /usr/src
+  exportDir: /opt/ncurses
+
+
+var:
+  version: "6.2"
+
+provision:
+  - url:
+      from: https://ftp.gnu.org/gnu/ncurses/ncurses-{% version %}.tar.gz
+      todir: "{% srcDir %}"
+
+build:
+  - shell:
+      cmds:
+        - ./configure --prefix={% exportDir %} --mandir={% exportDir %}/share/man --with-shared --without-debug --without-normal --enable-pc-files --enable-widec
+        - make
+        - make install DESTDIR=/usr
+      directory: "{% srcDir %}/ncurses-{% version %}"
+  - shell:
+      template: postinstall.sh
+      directory: "{% srcDir %}/ncurses-{% version %}"
+  - export: "{% exportDir %}"
+
