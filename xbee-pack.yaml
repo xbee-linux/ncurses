@@ -37,4 +37,9 @@ var:
 provision:
   - copy:
       builder: ncurses
-      todir: /usr
+      todir: /
+    before: rm -rf /usr/lib/terminfo
+  - copy:
+      resource: lib.conf
+      todir: /etc/ld.so.conf.d
+    after: ldconfig

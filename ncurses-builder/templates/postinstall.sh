@@ -1,19 +1,19 @@
 #!/bin/bash
 set -e
 
-mkdir -p {{ .pack.exportDir }}/lib/pkgconfig
+mkdir -p {{ .pack.exportDir }}/usr/lib/pkgconfig
 for lib in ncurses form panel menu ; do
-    rm -vf                    {{ .pack.exportDir }}/lib/lib${lib}.so
-    echo "INPUT(-l${lib}w)" > {{ .pack.exportDir }}/lib/lib${lib}.so
-    ln -sfv ${lib}w.pc        {{ .pack.exportDir }}/lib/pkgconfig/${lib}.pc
+    rm -vf                    {{ .pack.exportDir }}/usr/lib/lib${lib}.so
+    echo "INPUT(-l${lib}w)" > {{ .pack.exportDir }}/usr/lib/lib${lib}.so
+    ln -sfv ${lib}w.pc        {{ .pack.exportDir }}/usr/lib/pkgconfig/${lib}.pc
 done
 
-rm -vf                     {{ .pack.exportDir }}/lib/libcursesw.so
-echo "INPUT(-lncursesw)" > {{ .pack.exportDir }}/lib/libcursesw.so
-ln -sfv libncurses.so      {{ .pack.exportDir }}/lib/libcurses.so
+rm -vf                     {{ .pack.exportDir }}/usr/lib/libcursesw.so
+echo "INPUT(-lncursesw)" > {{ .pack.exportDir }}/usr/lib/libcursesw.so
+ln -sfv libncurses.so      {{ .pack.exportDir }}/usr/lib/libcurses.so
 
-rm -fv {{ .pack.exportDir }}/lib/libncurses++w.a
+rm -fv {{ .pack.exportDir }}/usr/lib/libncurses++w.a
 
 #documentation
-#mkdir -v       {{ .pack.exportDir }}/share/doc/ncurses-{{ .pack.version }}
-#cp -v -R doc/* {{ .pack.exportDir }}/share/doc/ncurses-{{ .pack.version }}
+#mkdir -pv       {{ .pack.exportDir }}/usr/share/doc/ncurses-6.2
+#cp -v -R doc/* {{ .pack.exportDir }}/usr/share/doc/ncurses-6.2
