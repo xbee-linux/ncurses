@@ -1,0 +1,22 @@
+schema-version: 1.0
+
+type: builder
+
+dependency: pkg-config
+
+provision:
+  - url:
+      from: https://ftp.gnu.org/gnu/ncurses/ncurses-{% version %}.tar.gz
+      todir: "{% xbeeSrc %}"
+
+
+build:
+  - shell:
+      cmds:
+        - ./configure --prefix=/usr --mandir=/usr/share/man --with-shared --without-debug --without-normal --enable-pc-files --enable-widec
+        - make
+        - make install DESTDIR={% xbeeOut %}
+      directory: "{% xbeeSrc %}/ncurses-{% version %}"
+  - shell:
+      template: postinstall.sh
+      directory: "{% xbeeSrc %}/ncurses-{% version %}"
