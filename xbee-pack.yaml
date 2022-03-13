@@ -1,5 +1,7 @@
 schema-version: 1.0
 
+type: builder
+
 description: |
   Le paquet Ncurses contient les bibliothèques de gestion des écrans type caractère, indépendant des terminaux.
 
@@ -26,16 +28,25 @@ description: |
 
 
 in:
-  version: "6.2"
+  version: 6.3
 
-builder: ./ncurses-builder
+schema-version: 1.0
+
+dependency: pkg-config
 
 provision:
- - copy:
-     builder: ncurses-builder/out
-     todir: /
-   before: rm -rf /usr/lib/terminfo
- - copy:
-     resource: lib.conf
-     todir: /etc/ld.so.conf.d
-   after: ldconfig
+  - url:
+      from: https://ftp.gnu.org/gnu/ncurses/ncurses-{% version %}.tar.gz
+      todir: "{% xbeeSrc %}"
+
+
+build:
+  - shell:
+      cmds:
+        - ./configure --prefix=/usr --with-shared --without-debug --without-normal --enable-pc-files --enable-widec
+        - make
+        - make install DESTDIR={% xbeeOut %}
+      directory: "{% xbeeSrc %}/ncurses-{% version %}"
+  - shell:
+      template: postinstall.sh
+      directory: "{% xbeeSrc %}/ncurses-{% version %}"
