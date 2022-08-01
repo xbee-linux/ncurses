@@ -4,6 +4,9 @@ type: builder
 
 dependency: pkg-config
 
+in:
+  version:
+
 provision:
   - url:
       from: https://ftp.gnu.org/gnu/ncurses/ncurses-{% version %}.tar.gz
@@ -16,7 +19,7 @@ provision:
 build:
   - shell:
       cmds:
-        - ./configure --prefix=/usr --with-shared --without-debug --without-normal --enable-pc-files --enable-widec --with-pkg-config-libdir=/usr/lib/pkgconfig
+        - ./configure --prefix=/usr --with-ticlib --with-shared --without-debug --without-normal --enable-pc-files --enable-widec --with-pkg-config-libdir=/usr/lib/pkgconfig
         - make
         - make install DESTDIR={% xbeeOut %}
         - rm {% xbeeOut %}/usr/lib/libncurses++w.a
