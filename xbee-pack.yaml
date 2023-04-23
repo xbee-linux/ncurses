@@ -25,7 +25,7 @@ description: |
   libpanelw: Contient des fonctions pour implémenter des panneaux
 
 
-in:
+var:
   version: 6.2
 
 dependency: ./ncurses-builder
