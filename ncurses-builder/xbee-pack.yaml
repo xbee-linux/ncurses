@@ -10,10 +10,10 @@ var:
 provision:
   - url:
       from: https://ftp.gnu.org/gnu/ncurses/ncurses-{{ .version }}.tar.gz
-      todir: "{{ .xbeeSrc }}"
+      todir: "{{ .xbee.src }}"
   - folder: 
      paths:
-        - "{{ .xbeeOut }}/usr/lib/pkgconfig"
+        - "{{ .xbee.out }}/usr/lib/pkgconfig"
         - /usr/lib/pkgconfig
 
 build:
@@ -21,9 +21,9 @@ build:
       cmds:
         - ./configure --prefix=/usr --with-ticlib --with-shared --without-debug --without-normal --enable-pc-files --enable-widec --with-pkg-config-libdir=/usr/lib/pkgconfig
         - make
-        - make install DESTDIR={{ .xbeeOut }}
-        - rm {{ .xbeeOut }}/usr/lib/libncurses++w.a
-      directory: "{{ .xbeeSrc }}/ncurses-{{ .version }}"
+        - make install DESTDIR={{ .xbee.out }}
+        - rm {{ .xbee.out }}/usr/lib/libncurses++w.a
+      directory: "{{ .xbee.src }}/ncurses-{{ .version }}"
   - shell:
       template: postinstall.sh
-      directory: "{{ .xbeeSrc }}/ncurses-{{ .version }}"
+      directory: "{{ .xbee.src }}/ncurses-{{ .version }}"
