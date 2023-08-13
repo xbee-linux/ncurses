@@ -28,7 +28,7 @@ description: |
 var:
   version: 6.2
 
-dependency: ./ncurses-builder
+builder: ./ncurses-builder
 
 provision:
   - shell: rm -rf /usr/lib/terminfo && mv /usr/lib/terminfo2 /usr/lib/terminfo
