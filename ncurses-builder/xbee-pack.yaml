@@ -8,10 +8,8 @@ var:
   version:
 
 provision:
-  - url:
-      from: https://ftp.gnu.org/gnu/ncurses/ncurses-{{ .version }}.tar.gz
-      todir: "{{ .xbee.src }}"
-  - folder: 
+  - url: https://ftp.gnu.org/gnu/ncurses/ncurses-{{ .version }}.tar.gz
+  - folder:
      paths:
         - "{{ .xbee.out }}/usr/lib/pkgconfig"
         - /usr/lib/pkgconfig
