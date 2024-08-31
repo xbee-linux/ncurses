@@ -26,7 +26,8 @@ description: |
 
 
 var:
-  version: 6.2
+  xbee:
+    version: 6.2
 
 builder: ./ncurses-builder
 

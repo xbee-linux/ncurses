@@ -5,10 +5,11 @@ type: builder
 dependency: pkg-config
 
 var:
-  version:
+  xbee:
+    version:
 
 provision:
-  - url: https://ftp.gnu.org/gnu/ncurses/ncurses-{{ .version }}.tar.gz
+  - url: https://ftp.gnu.org/gnu/ncurses/ncurses-{{ .xbee.version }}.tar.gz
   - folder:
      paths:
         - "{{ .xbee.out }}/usr/lib/pkgconfig"
@@ -21,7 +22,7 @@ build:
         - make
         - make install DESTDIR={{ .xbee.out }}
         - rm {{ .xbee.out }}/usr/lib/libncurses++w.a
-      directory: "{{ .xbee.src }}/ncurses-{{ .version }}"
+      directory: "{{ .xbee.src }}/ncurses-{{ .xbee.version }}"
   - shell:
       template: postinstall.sh
-      directory: "{{ .xbee.src }}/ncurses-{{ .version }}"
+      directory: "{{ .xbee.src }}/ncurses-{{ .xbee.version }}"
