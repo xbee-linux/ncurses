@@ -1,7 +1,5 @@
 schema-version: 1.0
 
-type: builder
-
 dependency: pkg-config
 
 var:
