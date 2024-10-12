@@ -1,6 +1,6 @@
 schema-version: 1.0
 
-dependency: pkg-config
+builder: pkg-config
 
 var:
   xbee:
